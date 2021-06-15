@@ -3,7 +3,6 @@
     background-color: transparent;
     width: 18rem;
     height: 25rem;
-    border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
   
@@ -39,7 +38,17 @@
   
   /* Style the back side */
   .flip-card-back {
-    background-color: dodgerblue;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: #e9ecef;
+    justify-content: center;
     transform: rotateY(180deg);
+  }
+  .hero-name{
+    color: white;
+    padding: 2px 20px ;
+    position: absolute;
+    top:90%;
+    left: 35%;
+    background-color: #00000099;
   }

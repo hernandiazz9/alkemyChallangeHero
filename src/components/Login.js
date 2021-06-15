@@ -1,88 +1,59 @@
-import { useState, useEffect } from "react";
-// hooks react redux
-import { useDispatch, useSelector } from "react-redux";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-// importamos la acción
-import { iniciarSesionAction } from "../redux/loginReducer";
+const Login = () => (
 
-const Login = (props) => {
-  //obtener usuario 
-  const usuario = useSelector((store) => store.login.activo);
-  // declaramos displach para llamar a la acción o acciones
-  const dispatch = useDispatch();
-  //crear state para loguearse
-  const [loguear, setLoguear] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = loguear;
-
-  useEffect(() => {
-    if (usuario) {
-      return props.history.push("/");
-    }
-  }, [usuario]);
-
-  const onClickLogin = () => {
-    if (loguear.email === "" || loguear.password.length < 6)
-      return console.log("NO CUMPLE");
-    dispatch(iniciarSesionAction(email, password));
-    setLoguear({
-      email: "",
-      password: "",
-    });
-    return props.history.push("/");
-  };
-
-  const onChange = (e) => {
-    console.log(e.target.value, "nono");
-    setLoguear({
-      ...loguear,
-      [e.target.name]: e.target.value,
-    });
-  };
-  return (
-    <form
-      className="p-4"
-      style={{
-        backgroundColor: "#00000024",
+  <div>
+    <h1 className='text-white'>Login with yout account</h1>
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.email) {
+          errors.email = "Required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+        if (!values.password) {
+          errors.password = "Required";
+        } else if (values.password.length < 8) {
+          errors.password = "Password must have 8 characters";
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setSubmitting(false);
+        console.log(values);
       }}
     >
-      <h2>Login with your Account</h2>
-      <div className="form-group">
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input
-          type="email"
-          className="form-control col-sm-5"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          name="email"
-          value={email}
-          onChange={onChange}
-        />
-        <small id="emailHelp" className="form-text text-muted">
-          We'll never share your email with anyone else.
-        </small>
-      </div>
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">Password</label>
-        <input
-          type="password"
-          className="form-control col-sm-5"
-          id="exampleInputPassword1"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={onChange}
-        />
-      </div>
-
-      <button type="button" className="btn btn-primary" onClick={onClickLogin}>
-        LogIn
-      </button>
-    </form>
-  );
-};
+      {({ isSubmitting }) => (
+        <Form className="form-group">
+          <span className="text-white">Email:</span>
+          <Field type="email" name="email" className="form-control col-sm-5" />
+          <ErrorMessage name="email" component="div" className="text-danger" />
+          <span className="text-white">Password:</span>
+          <Field
+            type="password"
+            name="password"
+            className="form-control col-sm-5"
+          />
+          <ErrorMessage
+            name="password"
+            component="div"
+            className="text-danger"
+          />
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="btn btn-primary"
+          >
+            Submit
+          </button>
+        </Form>
+      )}
+    </Formik>
+  </div>
+);
 
 export default Login;

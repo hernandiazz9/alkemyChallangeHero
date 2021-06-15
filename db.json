@@ -108,6 +108,211 @@
         "image": {
           "url": "https://www.superherodb.com/pictures2/portraits/10/100/791.jpg"
         }
+      },
+      {
+        "response": "success",
+        "id": "645",
+        "name": "Swamp Thing",
+        "powerstats": {
+          "intelligence": "88",
+          "strength": "95",
+          "speed": "25",
+          "durability": "100",
+          "power": "100",
+          "combat": "55"
+        },
+        "biography": {
+          "full-name": "Alec Holland",
+          "alter-egos": "No alter egos found.",
+          "aliases": [
+            "Green Man",
+            "Swampy",
+            "the Weed",
+            "Le Bon Gumbo",
+            "Smalsh-Yegger (on Rann)"
+          ],
+          "place-of-birth": "-",
+          "first-appearance": "Swamp Thing #1 (November, 1972)",
+          "publisher": "DC Comics",
+          "alignment": "bad"
+        },
+        "appearance": {
+          "gender": "Male",
+          "race": "God / Eternal",
+          "height": [
+            "-",
+            "0 cm"
+          ],
+          "weight": [
+            "- lb",
+            "0 kg"
+          ],
+          "eye-color": "Red",
+          "hair-color": "No Hair"
+        },
+        "work": {
+          "occupation": "Planet Elemental, former Biochemist",
+          "base": "-"
+        },
+        "connections": {
+          "group-affiliation": "formerly (Parliament of Trees; Parliament of Stones, Parliament of Flames, Parliament of Waves, and Parliament of Vapors), The Parliament of Worlds",
+          "relatives": "Larry Holland (father, deceased); Alice Holland (mother, deceased); Edward Holland (brother); Linda Holland (first wife, deceased); Abigail Holland (second wife); Tef� Holland (daughter); Gregori Arcane (father-in-law, deceased)"
+        },
+        "image": {
+          "url": "https://www.superherodb.com/pictures2/portraits/10/100/792.jpg"
+        }
+      },
+      {
+        "response": "success",
+        "id": "128",
+        "name": "Bolt",
+        "powerstats": {
+          "intelligence": "null",
+          "strength": "null",
+          "speed": "null",
+          "durability": "null",
+          "power": "null",
+          "combat": "null"
+        },
+        "biography": {
+          "full-name": "",
+          "alter-egos": "No alter egos found.",
+          "aliases": [
+            "-"
+          ],
+          "place-of-birth": "-",
+          "first-appearance": "-",
+          "publisher": "Marvel Comics",
+          "alignment": "good"
+        },
+        "appearance": {
+          "gender": "Male",
+          "race": "null",
+          "height": [
+            "-",
+            "0 cm"
+          ],
+          "weight": [
+            "- lb",
+            "0 kg"
+          ],
+          "eye-color": "-",
+          "hair-color": "-"
+        },
+        "work": {
+          "occupation": "-",
+          "base": "-"
+        },
+        "connections": {
+          "group-affiliation": "-",
+          "relatives": "-"
+        },
+        "image": {
+          "url": "https://www.superherodb.com/pictures2/portraits/10/100/1340.jpg"
+        }
+      },
+      {
+        "response": "success",
+        "id": "567",
+        "name": "Rogue",
+        "powerstats": {
+          "intelligence": "75",
+          "strength": "10",
+          "speed": "12",
+          "durability": "28",
+          "power": "80",
+          "combat": "80"
+        },
+        "biography": {
+          "full-name": "Anna Marie",
+          "alter-egos": "No alter egos found.",
+          "aliases": [
+            "Anna Raven",
+            "Doctor Kellogg",
+            "Mutate 9602",
+            "Irene Adler",
+            "Miss Smith"
+          ],
+          "place-of-birth": "Caldecott County, Mississippi",
+          "first-appearance": "Avengers Annual #10 (1981)",
+          "publisher": "Marvel Comics",
+          "alignment": "good"
+        },
+        "appearance": {
+          "gender": "Female",
+          "race": "null",
+          "height": [
+            "5'8",
+            "173 cm"
+          ],
+          "weight": [
+            "120 lb",
+            "54 kg"
+          ],
+          "eye-color": "Green",
+          "hair-color": "Brown / White"
+        },
+        "work": {
+          "occupation": "Adventurer, former mechanic, waitress, terrorist",
+          "base": "-"
+        },
+        "connections": {
+          "group-affiliation": "X-Men, formerly X-Treme Sanctions Executive, X-Treme X-Men, Brotherhood of Evil Mutants",
+          "relatives": "Owen (father), Priscilla (mother), Carrie (aunt), Raven Darkh�lme (Mystique, foster mother), Kurt Wagner (Nightcrawler, foster brother), Graydon Creed (foster brother, deceased)"
+        },
+        "image": {
+          "url": "https://www.superherodb.com/pictures2/portraits/10/100/831.jpg"
+        }
+      },
+      {
+        "response": "success",
+        "id": "580",
+        "name": "Scorpia",
+        "powerstats": {
+          "intelligence": "38",
+          "strength": "28",
+          "speed": "42",
+          "durability": "28",
+          "power": "34",
+          "combat": "28"
+        },
+        "biography": {
+          "full-name": "Elaine Coll",
+          "alter-egos": "No alter egos found.",
+          "aliases": [
+            "-"
+          ],
+          "place-of-birth": "-",
+          "first-appearance": "Spider-Man: Power of Terror limited series #2 (1995)",
+          "publisher": "Marvel Comics",
+          "alignment": "bad"
+        },
+        "appearance": {
+          "gender": "Female",
+          "race": "null",
+          "height": [
+            "-",
+            "0 cm"
+          ],
+          "weight": [
+            "- lb",
+            "0 kg"
+          ],
+          "eye-color": "Green",
+          "hair-color": "Red"
+        },
+        "work": {
+          "occupation": "Professional criminal",
+          "base": "-"
+        },
+        "connections": {
+          "group-affiliation": "Hells Kitchen Mob; formerly Sinister Seven, allied with Silvermane",
+          "relatives": "Vincent Coll (grandfather, deceased)"
+        },
+        "image": {
+          "url": "https://www.superherodb.com/pictures2/portraits/10/100/1123.jpg"
+        }
       }
+
 ]
 }

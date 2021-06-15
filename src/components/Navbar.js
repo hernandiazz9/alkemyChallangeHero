@@ -34,9 +34,6 @@ const Navbar = () => {
                 <NavLink className="btn btn-dark mr-2" to="/login" exact>
                   Login
                 </NavLink>
-                <NavLink className="btn btn-dark mr-2" to="/CrearCuenta" exact>
-                  Registrarse
-                </NavLink>
               </div>
             )}
 

@@ -1,25 +1,42 @@
-import { useDispatch, useSelector } from "react-redux";
-import PorwerStats from "../PorwerStats";
+
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { addHeroToTeamAction } from '../../redux/heroReducer'
+import PorwerStats from "./PorwerStats";
 import "./hero.css";
 
 const Hero = ({ hero }) => {
-
+   const dispatch = useDispatch()
   return (
     <>
-      {/* <div className="card"style={{ width: "18rem",'height':'25rem' }}> */}
-      <div className="flip-card ">
-        <div className="flip-card-inner">
-          <div className="flip-card-front ">
-            <img
-              src={hero.image.url}
-              alt="Avatar"
-              style={{ width: "18rem", height: "25rem" }}
-            />
-          </div>
-          <div className="flip-card-back">
-
-            {/* <PorwerStats hero={hero}/> */}
-
+      <div className="col-xl-4 col-md-6 mb-5 col-sm-10 ">
+        <div className="flip-card ">
+          <div className="flip-card-inner">
+            <div className="flip-card-front ">
+              <span className="hero-name">{hero.name}</span>
+              <img
+                src={hero.image.url}
+                alt="Avatar"
+                style={{ width: "18rem", height: "25rem" }}
+                
+              />
+            </div>
+            <div className="flip-card-back">
+              <h3>{hero.name}</h3>
+              <PorwerStats hero={hero} />
+              <div
+                className="btn-group p-2"
+                role="group"
+                aria-label="Basic example"
+              >
+                <Link to={{pathname:'/HeroInfo', state:hero.id}} className="btn btn-secondary mr-2">
+                  info
+                </Link>
+                <button type="button" onClick={()=>dispatch(addHeroToTeamAction(hero.id))} className="btn btn-secondary">
+                  add to team
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

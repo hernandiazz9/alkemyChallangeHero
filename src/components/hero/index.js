@@ -7,6 +7,7 @@ import "./hero.css";
 
 const Hero = ({ hero }) => {
    const dispatch = useDispatch()
+
   return (
     <>
       <div className="col-xl-4 col-md-6 mb-5 col-sm-10 ">

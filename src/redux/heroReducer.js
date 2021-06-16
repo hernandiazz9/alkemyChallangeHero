@@ -3,13 +3,15 @@ import axios from 'axios'
 const dataInicial = {
     loading:false,
     heroes:[],
-    team:[]
+    team:[],
+    error:''
 }
 //-----------------type-------------------//
 const LOADING = 'LOADING'
 const HERO_ERROR = 'HERO_ERROR'
 const GUARDAR_HEROES = 'GUARDAR_HEROES'
 const GUARDAR_HERO_A_TEAM = 'GUARDAR_HERO_A_TEAM'
+const HERO_NAME_ERROR = 'HERO_NAME_ERROR'
 
 
 //-----------------reducer-------------------//
@@ -17,11 +19,13 @@ export default function usuarioReducer (state = dataInicial, action){
 
     switch(action.type){
         case LOADING:
-            return {...state, loading:true}
+            return {...state, loading:true, error:''}
         case GUARDAR_HEROES:
-            return {...state, heroes:action.payload}
+            return {...state, heroes:action.payload, loading:false}
         case GUARDAR_HERO_A_TEAM:
             return {...state, team: [...state.team, action.payload]}
+        case HERO_NAME_ERROR:
+            return {...state, error: action.payload }
         
         default: 
             return {...state}
@@ -29,23 +33,27 @@ export default function usuarioReducer (state = dataInicial, action){
 
 }
 //-----------------action-------------------//
-export const ObtenerHeroAction = () => async(dispatch) => {
+export const searchHeroAction = (value) => async(dispatch) => {
     dispatch({
         type: LOADING
     })
     try {
-        const api = 10220411460301249;
-        // const res = await axios.get(`http://localhost:3000/data`)
-        const res = await axios.get(`https://superheroapi.com/api/10220411460301249/search/batman`)
-        console.log(res.data.results, 'hero')
-
+        const {heroName} = value
+        const res = await axios.get(`https://superheroapi.com/api/10220411460301249/search/${heroName}`).catch(e=>console.log(e))
         dispatch({
-            //enviar data a store
+            //enviar data de hero a store
             type: GUARDAR_HEROES,
             payload: res.data.results
         })
+        console.log(res.data);
+        if(res.data.error){
+            dispatch({
+                type: HERO_NAME_ERROR,
+                payload: res.data.error
+            })
+        }
     } catch (error) {
-        console.log(error)
+        console.log(error.response)
         dispatch({
             type: HERO_ERROR,
         })

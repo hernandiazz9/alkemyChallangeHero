@@ -47,6 +47,7 @@ const Login = (props) => {
               type="email"
               name="email"
               className="form-control col-sm-5"
+              placeholder = 'your email'
             />
             <ErrorMessage
               name="email"
@@ -58,6 +59,7 @@ const Login = (props) => {
               type="password"
               name="password"
               className="form-control col-sm-5"
+              placeholder = 'your password'
             />
             <ErrorMessage
               name="password"

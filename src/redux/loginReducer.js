@@ -1,121 +1,71 @@
-import firebase from '../firebase'
-import 'firebase/auth'
+import axios from "axios";
 //-----------------state inicial-------------------//
 const dataInicial = {
-    loading: false,
-    activo: false,
-    user:{}
-}
+  loading: false,
+  activo: false,
+  error: "",
+};
 //-----------------type-------------------//
-const LOADING = 'LOADING'
-const USER_EXITO = 'USER_EXITO'
-const USER_ERROR = 'USER_ERROR'
-const CERRAR_SESION = 'CERRAR_SESION'
+const LOADING = "LOADING";
+const USER_EXITO = "USER_EXITO";
+const USER_ERROR = "USER_ERROR";
+const CERRAR_SESION = "CERRAR_SESION";
+const USER_ERROR_INVALID = "USER_ERROR_INVALID";
 
 //-----------------reducer-------------------//
-export default function usuarioReducer (state = dataInicial, action){
-
-    switch(action.type){
-        case LOADING:
-            return {...state, loading: true}
-        case USER_ERROR:
-            return {...dataInicial}
-        case USER_EXITO:
-            return {...state, loading: false, activo: true, user: action.payload.user}
-        case CERRAR_SESION:
-            return {...dataInicial}
-        default: 
-            return {...state}
-    }
-
+export default function usuarioReducer(state = dataInicial, action) {
+  switch (action.type) {
+    case LOADING:
+      return { ...state, loading: true };
+    case USER_ERROR:
+      return { ...dataInicial };
+    case USER_ERROR_INVALID:
+      return { ...state, error: action.payload };
+    case USER_EXITO:
+      return { ...state, loading: false, activo: true };
+    case CERRAR_SESION:
+      return { ...dataInicial };
+    default:
+      return { ...state };
+  }
 }
 //-----------------action-------------------//
-export const crearCuentaAction = (email, pass, nombre) => async(dispatch) => {
+
+export const iniciarSesionAction = (values) => async (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
+  const { email, password } = values;
+  try {
+    const res = await axios.post("http://challenge-react.alkemy.org/", {
+      email,
+      password,
+    });
+    localStorage.setItem("token", res.data.token);
     dispatch({
-        type: LOADING
-    })
-    try {
-        const res =  await firebase.auth().createUserWithEmailAndPassword(email, pass)
-        await res.user.updateProfile({
-            displayName : nombre
-        })
-       console.log(res);
-       dispatch({
-           type:USER_EXITO,
-           payload: {
-                user: {
-                    uid: res.user.uid,
-                    email: res.user.email,
-                    name: res.user.displayName
-                }
-           }
-       })
-    } catch (error) {
-        console.log(error)
-        dispatch({
-            type: USER_ERROR
-        })
-    }
-}
-export const iniciarSesionAction = (email, pass) => async (dispatch)=>{
+      type: USER_EXITO,
+    });
+  } catch (error) {
     dispatch({
-        type: LOADING
-    })
-    try {
-        const res =  await firebase.auth().signInWithEmailAndPassword(email, pass)
-       console.log(res);
-       dispatch({
-           type:USER_EXITO,
-           payload: {
-                user: {
-                    uid: res.user.uid,
-                    email: res.user.email,
-                    name: res.user.displayName
-                }
-           }
-       })
-    } catch (error) {
-        console.log(error)
-        dispatch({
-            type: USER_ERROR
-        })
-    }
-}
-export const obtenerUsuarioAction = () =>  (dispatch)=>{
-    try {
-          firebase.auth().onAuthStateChanged(user =>{
-            if(user){
-                dispatch({
-                    type:USER_EXITO,
-                    payload: {
-                        user: {
-                            uid: user.uid,
-                            email: user.email,
-                            name: user.displayName
-                        }
-                    }
-                }) 
-            }
-        })
-    } catch (error) {
-        console.log(error)
-        dispatch({
-            type: USER_ERROR
-        })
-    }
-}
- export const cerrarSesionAction = () =>  (dispatch)=>{
-    try {
-        firebase.auth().signOut()
-        // localStorage.removeItem('nombreSala')
-        dispatch({
-            type:CERRAR_SESION
-        })
-        
-    } catch (error) {
-        console.log(error)
-        dispatch({
-            type: USER_ERROR
-        })
-    }
-} 
+      type: USER_ERROR_INVALID,
+      payload: error.response.data.error,
+    });
+  }
+};
+export const obtenerUsuarioAction = () => (dispatch) => {
+  if (localStorage.getItem("token")) {
+    dispatch({
+      type: USER_EXITO,
+    });
+  } else {
+    dispatch({
+      type: CERRAR_SESION,
+    });
+  }
+};
+export const cerrarSesionAction = () => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({
+    type: CERRAR_SESION,
+  });
+};

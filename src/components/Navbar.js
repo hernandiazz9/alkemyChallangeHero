@@ -8,7 +8,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   // leer state
   const logueado = useSelector((store) => store.login.activo);
-  const user = useSelector((store) => store.login.user);
+
 
   return (
     <>
@@ -20,15 +20,10 @@ const Navbar = () => {
       <div className=" navbar navbar-dark bg-dark d-flex justify-content-around">
         <div className=''>
           <div className="">
-            {logueado && (
-              <NavLink className="btn btn-dark mr-2" to="/" exact>
-                Home
-              </NavLink>
-            )}
             {logueado ? (
               <NavLink className="btn btn-dark mr-2" to="/" exact>
-                {user && user.name}
-              </NavLink>
+              Home
+            </NavLink>
             ) : (
               <div>
                 <NavLink className="btn btn-dark mr-2" to="/login" exact>

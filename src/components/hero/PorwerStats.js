@@ -1,6 +1,6 @@
-const PorwerStats = ({ hero }) => {
-  const namePowerStat = Object.keys(hero.powerstats);
-  const valuePowerStat = Object.values(hero.powerstats);
+const PorwerStats = ({ powerStats }) => {
+  const namePowerStat = Object.keys(powerStats);
+  const valuePowerStat = Object.values(powerStats);
   return (
     <>
       {namePowerStat.map((name, i) => (

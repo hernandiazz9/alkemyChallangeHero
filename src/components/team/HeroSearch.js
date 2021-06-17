@@ -24,7 +24,7 @@ const HeroSearch = () => {
         }}
       >
         <Form className="form-inline mb-5">
-          <div className='form-group  mx-3 "'>
+          <div className='form-group  mx-3 '>
          <Field
               className="form-control mb-2 ml-2 "
               id="heroName"

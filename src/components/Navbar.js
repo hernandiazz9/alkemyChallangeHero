@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // importamos la acción
 import { cerrarSesionAction } from "../redux/loginReducer";
-
+import { resetHeroAction } from '../redux/heroReducer'
 const Navbar = () => {
   const dispatch = useDispatch();
   // leer state
@@ -34,7 +34,10 @@ const Navbar = () => {
             {logueado && (
               <button
                 className="btn btn-dark"
-                onClick={() => dispatch(cerrarSesionAction())}
+                onClick={() =>{ 
+                  dispatch(cerrarSesionAction())
+                  dispatch(resetHeroAction())
+                }}
               >
                 cerrar Sesión
               </button>

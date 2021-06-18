@@ -95,7 +95,7 @@ export default function usuarioReducer(state = dataInicial, action) {
 }
 //-----------------action-------------------//
 export const searchHeroAction = (value) => async (dispatch) => {
-  dispatch({
+  dispatch({ 
     type: LOADING_HERO,
   });
   try {

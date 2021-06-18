@@ -29,9 +29,10 @@ const Hero = ({ hero, addToTeam }) => {
               style={{ width: "18rem", height: "25rem" }}
             />
           </div>
-          <div className="flip-card-back text-white">
+             {/* detras de la card */}
+          <div className="flip-card-back text-white"> 
             <h3 >{hero.name}</h3>
-            <p> {hero.biography.alignment} </p>
+            <p> He is a {hero.biography.alignment} Hero </p>
             <PorwerStats powerStats={hero.powerstats} />
             {teamError.length > 0 && addToTeam && <Error error={teamError} />}
             <div

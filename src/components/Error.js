@@ -2,7 +2,7 @@
 
 const Error = ({error}) => {
     return (
-        <div className='text-danger'>
+        <div className='mt-1 mx-1 border border-danger text-danger'>
             {error}
         </div>
     )

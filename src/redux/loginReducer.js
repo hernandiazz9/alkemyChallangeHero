@@ -39,7 +39,7 @@ export const iniciarSesionAction = (values) => async (dispatch) => {
   try {
     // / api / * http://endpoint.com/api/:splat 200!
 
-    const res = await axios.post("/api/http://challenge-react.alkemy.org/", {
+    const res = await axios.post("/api/*http://challenge-react.alkemy.org/", {
       email,
       password,
     });

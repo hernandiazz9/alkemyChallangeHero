@@ -1,21 +1,40 @@
+
+
+
+
 const PorwerStats = ({ powerStats }) => {
-  const namePowerStat = Object.keys(powerStats);
-  const valuePowerStat = Object.values(powerStats);
+  const namesPowerStat = Object.keys(powerStats);
+  const valuesPowerStat = Object.values(powerStats);
+  const powerStatsArray = []
+  var powerStatsValue = {
+    value:'',
+    name:''
+  }
+  for (let i = 0; i < valuesPowerStat.length; i++) {
+    if(valuesPowerStat[i]==='null')return null;
+    powerStatsValue = {
+      value: Number(valuesPowerStat[i]),
+      name: namesPowerStat[i]
+    }
+    powerStatsArray.push(powerStatsValue)
+  }
+  const powerStatsArrayOrder = (powerStatsArray.sort(function(a, b)  { return b.value - a.value } ));
+
   return (
     <>
-      {namePowerStat.map((name, i) => (
-        <div className="progress" style={{ height: "30px" }} key={name}>
+      {powerStatsArrayOrder.map((powerstat, i) => ( //name.power bla bla
+        <div className="progress" style={{background:'#151515' ,height: "25px" }} key={i}>
           <div
-            className="progress-bar bg-warning"
+            className="text-white progress-bar "
             role="progressbar"
             style={{
-              width: `${valuePowerStat[i]}%`,
-              color: "black",
+              background:'#14cc60' ,
+              width: `${powerstat.value}%`,
               margin: "2px 1px ",
-              border: "1px solid",
+
             }}
           >
-            {` ${name}: ${valuePowerStat[i]}%`}
+            {` ${powerstat.name}: ${powerstat.value}%`}
           </div>
         </div>
       ))}

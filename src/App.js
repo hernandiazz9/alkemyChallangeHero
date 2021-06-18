@@ -24,9 +24,9 @@ function App() {
     // if(!logueado) return props.history.push('/login')
     return (
         <Router>
-            <div className="container pl-0 pr-0 ">
+            <div className="container-fluid">
                 <Navbar />
-                <Switch>
+                <Switch >
                     <Route component={Login} path="/login" />
                     {/* <Route component={CrearCuenta} path="/CrearCuenta" /> */}
                     <Route component={Home} path="/" exact/>

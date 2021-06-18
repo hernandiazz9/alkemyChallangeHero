@@ -14,7 +14,8 @@ const dataInicial = {
     power: 0,
     combat: 0,
   },
-
+  weightTeam: 0,
+  heightTeam: 0,
 };
 //-----------------type-------------------//
 const LOADING_HERO = "LOADING_HERO";
@@ -26,6 +27,7 @@ const TEAM_ERROR = "TEAM_ERROR";
 const DELETE_HERO = "DELETE_HERO";
 const POWER_STATS_TEAM = "POWER_STATS_TEAM";
 const RESET_HERO_ACTION = "RESET_HERO_ACTION";
+const HEIGHT_WEIGHT = "HEIGHT_WEIGHT";
 
 //-----------------reducer-------------------//
 export default function usuarioReducer(state = dataInicial, action) {
@@ -77,9 +79,15 @@ export default function usuarioReducer(state = dataInicial, action) {
           power: state.powerstats.power + Number(action.payload.power),
           combat: state.powerstats.combat + Number(action.payload.combat),
         },
-    };
+      };
     case RESET_HERO_ACTION:
-        return {...dataInicial }
+      return { ...dataInicial };
+    case HEIGHT_WEIGHT:
+      return {
+        ...state,
+        weightTeam: action.payload.weight,
+        heightTeam: action.payload.height,
+      };
 
     default:
       return { ...state };
@@ -115,6 +123,7 @@ export const searchHeroAction = (value) => async (dispatch) => {
   }
 };
 export const addHeroToTeamAction = (id) => (dispatch, getState) => {
+  console.log("id de afuera", id);
   const { heroes, team } = getState().hero;
   const heroSelect = heroes.filter((hero) => hero.id === id);
   console.log(heroSelect, "hero");
@@ -132,8 +141,10 @@ export const addHeroToTeamAction = (id) => (dispatch, getState) => {
     }, 1000);
     return;
   }
+
   //chequear si ya esta el heroe en el team
-  if (team.includes(heroSelect[0])) {
+  const checkHeroTeam = team.map((hero) => {return hero.id === id})
+  if (checkHeroTeam.includes(true)) {
     dispatch({
       type: TEAM_ERROR,
       payload: "Hero is already in your team",
@@ -169,10 +180,10 @@ export const addHeroToTeamAction = (id) => (dispatch, getState) => {
           payload: heroSelect[0],
         });
       }
-    } else {
+    } else if (heroSelect[0].biography.alignment === "bad") {
       //control 3 bad heroes
       const control3bad = team.filter(
-        (hero) => hero.biography.alignment === "good"
+        (hero) => hero.biography.alignment === "bad"
       );
       if (control3bad.length === 3) {
         dispatch({
@@ -192,11 +203,16 @@ export const addHeroToTeamAction = (id) => (dispatch, getState) => {
           payload: heroSelect[0],
         });
       }
+    } else {
+      dispatch({
+        type: GUARDAR_HERO_A_TEAM,
+        payload: heroSelect[0],
+      });
     }
   }
 };
 
-export const deleteHeroAction = (id) => (dispatch, getState) => {
+export const deleteHeroAction = (id) => (dispatch) => {
   dispatch({
     type: DELETE_HERO,
     payload: id,
@@ -205,15 +221,34 @@ export const deleteHeroAction = (id) => (dispatch, getState) => {
 
 export const PowerstasTeam = () => (dispatch, getState) => {
   const { team } = getState().hero;
+  var height = 0;
+  var weight = 0;
   team.map((hero) => {
+    if (hero.powerstats.intelligence === "null")
+      hero.powerstats.intelligence = 0;
+    if (hero.powerstats.strength === "null") hero.powerstats.strength = 0;
+    if (hero.powerstats.speed === "null") hero.powerstats.speed = 0;
+    if (hero.powerstats.durability === "null") hero.powerstats.durability = 0;
+    if (hero.powerstats.power === "null") hero.powerstats.power = 0;
+    if (hero.powerstats.combat === "null") hero.powerstats.combat = 0;
     dispatch({
       type: POWER_STATS_TEAM,
       payload: hero.powerstats,
     });
+    height += Number(hero.appearance.height[1].slice(0, 3));
+    weight += Number(hero.appearance.weight[1].slice(0, 3));
+  });
+  height = height / team.length;
+  weight = weight / team.length;
+  console.log(height.toFixed(2));
+  console.log(weight.toFixed(2));
+  dispatch({
+    type: HEIGHT_WEIGHT,
+    payload: { height, weight },
   });
 };
 export const resetHeroAction = () => (dispatch) => {
-    dispatch({
-      type: RESET_HERO_ACTION,
-    });
+  dispatch({
+    type: RESET_HERO_ACTION,
+  });
 };

@@ -12,13 +12,16 @@ const Hero = ({ hero, addToTeam }) => {
   const [heroInYourTeam, setHeroInYourTeam] = useState(false)
 
   useEffect(() => {
-    if(team.includes(hero))setHeroInYourTeam(true)
+    const checkHeroTeam = team.map((heroo) => {return heroo.id === hero.id})
+    if(checkHeroTeam.includes(true)){
+      setHeroInYourTeam(true)
+    }else setHeroInYourTeam(false)
   }, [team, heroes])
 
   return (
       <div className={heroInYourTeam&&addToTeam?"flip-card in-your-team " : "flip-card "}>
-        <div className="flip-card-inner">
-          <div className="flip-card-front ">
+        <div className="flip-card-inner ">
+          <div className="flip-card-front  ">
             <span className="hero-name">{hero.name}</span>
             <img
               src={hero.image.url}
@@ -26,26 +29,25 @@ const Hero = ({ hero, addToTeam }) => {
               style={{ width: "18rem", height: "25rem" }}
             />
           </div>
-          <div className="flip-card-back">
-            <h3>{hero.name}</h3>
+          <div className="flip-card-back text-white">
+            <h3 >{hero.name}</h3>
             <p> {hero.biography.alignment} </p>
             <PorwerStats powerStats={hero.powerstats} />
             {teamError.length > 0 && addToTeam && <Error error={teamError} />}
             <div
               className="btn-group p-2"
               role="group"
-              aria-label="Basic example"
             >
               <Link
                 to={{ pathname: "/HeroInfo", state: hero.id }}
-                className="btn btn-primary mr-2"
+                className="btn btn-outline-primary mr-2"
               >
                 info
               </Link>
               {addToTeam ? (
                 <button
                   type="button"
-                  className="btn btn-success"
+                  className="btn btn-outline-success"
                   onClick={() => dispatch(addHeroToTeamAction(hero.id))}
                 >
                   add to team
@@ -53,7 +55,7 @@ const Hero = ({ hero, addToTeam }) => {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-danger"
+                  className="btn btn-outline-danger"
                   onClick={() => dispatch(deleteHeroAction(hero.id))}
                 >
                   delete

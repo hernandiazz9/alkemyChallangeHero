@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // importamos la acción
 import { cerrarSesionAction } from "../redux/loginReducer";
-import { resetHeroAction } from '../redux/heroReducer'
+import { resetHeroAction } from "../redux/heroReducer";
 const Navbar = () => {
   const dispatch = useDispatch();
   // leer state
@@ -11,9 +11,14 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="text-center p-4">
-        <Link className="" to="/">
-          SuperHero
+      <div
+        style={{
+          fontFamily: "Dela Gothic One, cursive",
+        }}
+        className="text-center p-4"
+      >
+        <Link style={{ color: "#14cc60", textDecorationLine: "none" }} to="/">
+          <h1 style={{fontSize:'6.5vw'}}>SUPER<span class="text-muted">HERO</span></h1>
         </Link>
       </div>
       <div className=" navbar navbar-dark bg-dark d-flex justify-content-around">
@@ -34,9 +39,9 @@ const Navbar = () => {
             {logueado && (
               <button
                 className="btn btn-dark"
-                onClick={() =>{ 
-                  dispatch(cerrarSesionAction())
-                  dispatch(resetHeroAction())
+                onClick={() => {
+                  dispatch(cerrarSesionAction());
+                  dispatch(resetHeroAction());
                 }}
               >
                 cerrar Sesión

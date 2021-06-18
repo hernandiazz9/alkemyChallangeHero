@@ -40,9 +40,10 @@
   .flip-card-back {
     display: flex;
     flex-direction: column;
-    background-color: #e9ecef;
+    background-color: #151515;
     justify-content: center;
     transform: rotateY(180deg);
+    border: 1px solid white;
   }
   .hero-name{
     color: white;
@@ -51,6 +52,7 @@
     top:90%;
     left: 35%;
     background-color: #00000099;
+    
   }
 
   .in-your-team{

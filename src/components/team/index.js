@@ -2,14 +2,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Hero from "../hero";
 import PorwerStats from "../hero/PorwerStats";
-import { PowerstasTeam } from '../../redux/heroReducer'
+import { PowerstasTeam } from "../../redux/heroReducer";
 
 const Team = () => {
   const dispatch = useDispatch();
-  const { team, powerstats } = useSelector((state) => state.hero);
+  const { team, powerstats, heightTeam, weightTeam } = useSelector(
+    (state) => state.hero
+  );
 
   useEffect(() => {
-    dispatch( PowerstasTeam() );
+    dispatch(PowerstasTeam());
   }, [team]);
 
   return (
@@ -20,13 +22,21 @@ const Team = () => {
         </p>
       ) : (
         <>
-          <div className="container  ">
-            <div className="row  ">
-              <h2 className=" col-md-5 col-sm-12 text-white display-2 mb-3 ml-3">
-                That is Your Team
-              </h2>
-              <div className="col-md-5 col-sm-12 text-white">
-                <h3>Team PowerStats</h3>
+          <div className="container text-white ">
+            <div className="row justify-content-around">
+              <div className="col-md-5 col-sm-12  mb-3 ml-3">
+                <p className="fs-4">
+                  This is <br />
+                  <span className="display-4">Your Team</span>
+                </p>
+                <p>Team Weight Average: {weightTeam} kg</p>
+                <p>Team Height Average: {heightTeam} </p>
+              </div>
+              <div className="col-md-5 col-sm-12  ">
+                <p className="display-6">
+                  Your Team <br />
+                  <span className="display-4">Power Stats</span>
+                </p>
                 <div className="mb-4">
                   <PorwerStats powerStats={powerstats} />
                 </div>

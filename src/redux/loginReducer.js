@@ -37,7 +37,7 @@ export const iniciarSesionAction = (values) => async (dispatch) => {
   });
   const { email, password } = values;
   try {
-    const res = await axios.post("https://challenge-react.alkemy.org/", {
+    const res = await axios.post("http://challenge-react.alkemy.org/", {
       email,
       password,
     });

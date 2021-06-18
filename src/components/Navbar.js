@@ -18,7 +18,7 @@ const Navbar = () => {
         className="text-center p-4"
       >
         <Link style={{ color: "#14cc60", textDecorationLine: "none" }} to="/">
-          <h1 style={{fontSize:'6.5vw'}}>SUPER<span class="text-muted">HERO</span></h1>
+          <h1 style={{fontSize:'6.5vw'}}>SUPER<span className="text-muted">HERO</span></h1>
         </Link>
       </div>
       <div className=" navbar navbar-dark bg-dark d-flex justify-content-around">

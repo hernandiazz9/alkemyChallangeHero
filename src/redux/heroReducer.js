@@ -100,9 +100,9 @@ export const searchHeroAction = (value) => async (dispatch) => {
   });
   try {
     const { heroName } = value;
+    const key = '10220411460301249'
     const res = await axios
       .get(`https://superheroapi.com/api/10220411460301249/search/${heroName}`)
-      .catch((e) => console.log(e));
     dispatch({
       //enviar data de hero a store
       type: GUARDAR_HEROES,

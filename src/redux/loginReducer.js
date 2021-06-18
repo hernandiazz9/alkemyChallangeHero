@@ -37,7 +37,7 @@ export const iniciarSesionAction = (values) => async (dispatch) => {
   });
   const { email, password } = values;
   try {
-    const res = await axios.post("http://challenge-react.alkemy.org/", {
+    const res = await axios.post("https://challenge-react.alkemy.org/", {
       email,
       password,
     });
@@ -46,6 +46,7 @@ export const iniciarSesionAction = (values) => async (dispatch) => {
       type: USER_EXITO,
     });
   } catch (error) {
+    if(!error)return ;
     dispatch({
       type: USER_ERROR_INVALID,
       payload: error.response.data.error,

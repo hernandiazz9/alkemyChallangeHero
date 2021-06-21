@@ -1,8 +1,10 @@
 ## Aplicacion creada con Create React App.
 
-### Challange Alkemy de React js.
+# Challange Alkemy de React js.
 
-# Consiste en armar tu equipo con diferentees heroes, te permite agregar 3 heroes 'buenos' y 3 'malos'.
+### Consiste buscar un heroe de una api armar tu equipo con diferentees heroes 
+### Te permite agregar 3 heroes 'buenos' y 3 'malos'.
+### realizado con React, Redux, Axios, Bootstrap, Formik
 
 
 Fork y npm install

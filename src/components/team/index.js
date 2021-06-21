@@ -12,6 +12,7 @@ const Team = () => {
 
   useEffect(() => {
     dispatch(PowerstasTeam());
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [team]);
 
   return (
@@ -30,7 +31,7 @@ const Team = () => {
                   <span className="display-4">Your Team</span>
                 </p>
                 <p>Team Weight Average: {weightTeam} kg</p>
-                <p>Team Height Average: {heightTeam} </p>
+                <p>Team Height Average: {heightTeam} cm</p>
               </div>
               <div className="col-md-5 col-sm-12  ">
                 <p className="display-6">

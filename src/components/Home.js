@@ -16,10 +16,12 @@ const Home = ({ history }) => {
     if (!usuarioActivo) {
       return history.push("/login");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [usuarioActivo]);
 
   useEffect(() => {
     dispatch(obtenerUsuarioAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

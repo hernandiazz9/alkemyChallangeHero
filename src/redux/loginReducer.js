@@ -8,7 +8,6 @@ const dataInicial = {
 //-----------------type-------------------//
 const LOADING = "LOADING";
 const USER_EXITO = "USER_EXITO";
-const USER_ERROR = "USER_ERROR";
 const CERRAR_SESION = "CERRAR_SESION";
 const USER_ERROR_INVALID = "USER_ERROR_INVALID";
 
@@ -17,10 +16,8 @@ export default function usuarioReducer(state = dataInicial, action) {
   switch (action.type) {
     case LOADING:
       return { ...state, loading: true };
-    case USER_ERROR:
-      return { ...dataInicial };
     case USER_ERROR_INVALID:
-      return { ...state, error: action.payload };
+      return { ...state, loading: false, error: action.payload };
     case USER_EXITO:
       return { ...state, loading: false, activo: true };
     case CERRAR_SESION:
@@ -53,10 +50,15 @@ export const iniciarSesionAction = (values) => async (dispatch) => {
       type: USER_ERROR_INVALID,
       payload: error.response.data.error,
     });
+    setTimeout(() => {
+      dispatch({
+        type: CERRAR_SESION
+      })
+    }, 3000);
   }
 };
 export const obtenerUsuarioAction = () => (dispatch) => {
-  localStorage.setItem("token", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJjaGFsbGVuZ2VAYWxrZW15Lm9yZyIsImlhdCI6MTUxNjIzOTAyMn0.ilhFPrG0y7olRHifbjvcMOlH7q2YwlegT0f4aSbryBE');
+  // localStorage.setItem("token", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZW1haWwiOiJjaGFsbGVuZ2VAYWxrZW15Lm9yZyIsImlhdCI6MTUxNjIzOTAyMn0.ilhFPrG0y7olRHifbjvcMOlH7q2YwlegT0f4aSbryBE');
   if (localStorage.getItem("token")) {
     dispatch({
       type: USER_EXITO,

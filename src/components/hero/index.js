@@ -16,6 +16,7 @@ const Hero = ({ hero, addToTeam }) => {
     if(checkHeroTeam.includes(true)){
       setHeroInYourTeam(true)
     }else setHeroInYourTeam(false)
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [team, heroes])
 
   return (

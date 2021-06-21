@@ -20,6 +20,7 @@ function App() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(obtenerUsuarioAction())
+         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     // if(!logueado) return props.history.push('/login')
     return (

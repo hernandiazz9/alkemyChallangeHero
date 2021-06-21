@@ -85,8 +85,8 @@ export default function usuarioReducer(state = dataInicial, action) {
     case HEIGHT_WEIGHT:
       return {
         ...state,
-        weightTeam: action.payload.weight,
-        heightTeam: action.payload.height,
+        weightTeam: action.payload.weight.toFixed(2),
+        heightTeam: action.payload.height.toFixed(2),
       };
 
     default:
@@ -95,14 +95,14 @@ export default function usuarioReducer(state = dataInicial, action) {
 }
 //-----------------action-------------------//
 export const searchHeroAction = (value) => async (dispatch) => {
-  dispatch({ 
+  dispatch({
     type: LOADING_HERO,
   });
   try {
     const { heroName } = value;
-    const key = '10220411460301249'
-    const res = await axios
-      .get(`https://superheroapi.com/api/10220411460301249/search/${heroName}`)
+    const res = await axios.get(
+      `https://superheroapi.com/api/10220411460301249/search/${heroName}`
+    );
     dispatch({
       //enviar data de hero a store
       type: GUARDAR_HEROES,
@@ -143,7 +143,9 @@ export const addHeroToTeamAction = (id) => (dispatch, getState) => {
   }
 
   //chequear si ya esta el heroe en el team
-  const checkHeroTeam = team.map((hero) => {return hero.id === id})
+  const checkHeroTeam = team.map((hero) => {
+    return hero.id === id;
+  });
   if (checkHeroTeam.includes(true)) {
     dispatch({
       type: TEAM_ERROR,
@@ -223,7 +225,7 @@ export const PowerstasTeam = () => (dispatch, getState) => {
   const { team } = getState().hero;
   var height = 0;
   var weight = 0;
-  team.map((hero) => {
+  team.forEach((hero) => {
     if (hero.powerstats.intelligence === "null")
       hero.powerstats.intelligence = 0;
     if (hero.powerstats.strength === "null") hero.powerstats.strength = 0;
@@ -235,13 +237,16 @@ export const PowerstasTeam = () => (dispatch, getState) => {
       type: POWER_STATS_TEAM,
       payload: hero.powerstats,
     });
-    height += Number(hero.appearance.height[1].slice(0, 3));
-    weight += Number(hero.appearance.weight[1].slice(0, 3));
+    if (
+      Number(hero.appearance.height[1].slice(0, 3)) &&
+      Number(hero.appearance.weight[1].slice(0, 3))
+    ) {
+      height += Number(hero.appearance.height[1].slice(0, 3));
+      weight += Number(hero.appearance.weight[1].slice(0, 3));
+    }
   });
   height = height / team.length;
   weight = weight / team.length;
-  console.log(height.toFixed(2));
-  console.log(weight.toFixed(2));
   dispatch({
     type: HEIGHT_WEIGHT,
     payload: { height, weight },

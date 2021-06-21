@@ -1,12 +1,14 @@
-Aplicacion creada con Create React App.
+## Aplicacion creada con Create React App.
 
-Challange Alkemy de React js.
+### Challange Alkemy de React js.
+
+# Consiste en armar tu equipo con diferentees heroes, te permite agregar 3 heroes 'buenos' y 3 'malos'.
+
 
 Fork y npm install
 
 
-
-## Available Scripts
+ Available Scripts
 
 In the project directory, you can run:
 

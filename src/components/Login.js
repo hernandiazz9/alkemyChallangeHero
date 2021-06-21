@@ -43,7 +43,7 @@ const Login = (props) => {
             dispatch(iniciarSesionAction(values));
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, isValid }) => (
             <Form className="form-group">
               <div className="mt-4">
                 <span className="text-white">Email:</span>
@@ -73,7 +73,7 @@ const Login = (props) => {
                   />
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting||!isValid}
                     className="btn btn-primary mt-3"
                   >
                     Submit

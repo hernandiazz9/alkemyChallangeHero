@@ -34,8 +34,7 @@ export const iniciarSesionAction = (values) => async (dispatch) => {
   });
   const { email, password } = values;
   try {
-    // / api / * http://endpoint.com/api/:splat 200!
-    // * http://webservices.nextbus.com/service/:splat 200
+    // Mala direccion web al enviar datos del usuario al no ser https //
     const res = await axios.post("http://challenge-react.alkemy.org/", {
       email,
       password,

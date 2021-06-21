@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+Aplicacion creada con Create React App.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Challange Alkemy de React js.
+
+Fork y npm install
+
+
 
 ## Available Scripts
 

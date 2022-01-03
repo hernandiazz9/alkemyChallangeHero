@@ -12,12 +12,12 @@ const Home = ({ history }) => {
   const { heroes, loading2 } = useSelector((store) => store.hero);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!usuarioActivo) {
-      return history.push("/login");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [usuarioActivo]);
+  // useEffect(() => {
+  //   if (!usuarioActivo) {
+  //     return history.push("/login");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [usuarioActivo]);
 
   useEffect(() => {
     dispatch(obtenerUsuarioAction());
